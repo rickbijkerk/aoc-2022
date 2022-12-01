@@ -1,11 +1,12 @@
 fun main() {
-    fun part1(input: List<String>): Int {
+    fun getCalories(input: List<String>): MutableList<Int> {
         val calories = mutableListOf<Int>()
 
         val newLines = input.withIndex().filter { x -> x.value.isEmpty() }.map { it.index }.toMutableList()
         newLines.add(input.size)
 
         var start = 0
+
         newLines.map { index ->
             val caloriesAsInt = input.subList(start + 1, index).map { stringValue -> stringValue.toInt() }
             val sumOfCalories = caloriesAsInt.sumOf { calorie -> calorie }
@@ -13,25 +14,17 @@ fun main() {
 
             calories.add(sumOfCalories)
         }
+        return calories
+    }
+
+    fun part1(input: List<String>): Int {
+        val calories = getCalories(input)
 
         return calories.max()
     }
 
     fun part2(input: List<String>): Int {
-        val calories = mutableListOf<Int>()
-
-        val newLines = input.withIndex().filter { x -> x.value.isEmpty() }.map { it.index }.toMutableList()
-        newLines.add(input.size)
-
-        var start = 0
-
-        newLines.map { index ->
-            val caloriesAsInt = input.subList(start + 1, index).map { stringValue -> stringValue.toInt() }
-            val sumOfCalories = caloriesAsInt.sumOf { calorie -> calorie }
-            start = index
-
-            calories.add(sumOfCalories)
-        }
+        val calories = getCalories(input)
 
         return calories.toMutableList().sortedDescending().take(3).sum()
     }
