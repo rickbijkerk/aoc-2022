@@ -8,7 +8,7 @@ fun main() {
         return 0
     }
 
-    val testInput = readInput("day03_test")
+    val testInput = readInput("day00_test")
     // test part1
     val resultPart1 = part1(testInput)
 
@@ -20,7 +20,7 @@ fun main() {
 
 
     //Check results part1
-    val input = readInput("day03")
+    val input = readInput("day00")
     println("Part1 ${part1(input)}\n\n")
 
 
